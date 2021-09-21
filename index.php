@@ -28,7 +28,7 @@ if ($_POST['inhalte'] != '') {
     }
 }
 if (isset($_GET['schuelerWahl'])) {
-    $unterricht = $db->query("SELECT inhalte, schuelerID, datum FROM unterricht WHERE schuelerID = " . $_GET['schuelerWahl'] . " ORDER BY datum DESC;") or die($db->error);
+    $unterricht = $db->query("SELECT inhalte, schuelerID, datum, online FROM unterricht WHERE schuelerID = " . $_GET['schuelerWahl'] . " ORDER BY datum DESC;") or die($db->error);
     $aufgaben = $db->query("SELECT * FROM aufgaben WHERE schuelerID = " . $_GET['schuelerWahl'] . " && erledigt IS NULL ORDER BY datum DESC;") or die($db->error);
     $teilnehmerX = $db->query("SELECT ID, vorname, nachname, vertraege.anfang, vertraege.ende, vertraege.gruppe FROM schueler JOIN vertraege ON ID = schuelerID WHERE vertraege.gruppe = " .$_GET['schuelerWahl'] . ";") or die($db->error);
 }
@@ -80,7 +80,7 @@ if (isset($_GET['schuelerWahl'])) {
             function setzeDatum() {
                 var _datum = new Date(jArray[index][2]);
                 document.getElementById('historie').innerHTML = jArray[index][0];
-                document.getElementById('vorigeStd').innerHTML = _datum.toLocaleDateString('de-DE');
+                document.getElementById('vorigeStd').innerHTML = _datum.toLocaleDateString('de-DE') + ((jArray[index][3] == true ) ? '</br>online' : '');
             }
             function stundeZurueck() {
                 index++;
