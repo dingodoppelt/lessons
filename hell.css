@@ -1,45 +1,44 @@
 html { font-size: 150%;
     text-align: center;
     background: whitesmoke;
-  }
-  select {
+}
+select {
     width: 100%;
     font-size: 1em;
     text-align: center;
     padding: 10px;
     position: fixed; bottom: 0; left: 0;
-  }
-  label[class=schalter] {
-    border: 1px solid #ccc ;
+}
+label[class=schalter] {
+    border: 1px solid #ccc;
     padding: 8px;
     margin: 8px 0;
     display: block;
 }
 
-  input[type=checkbox][class=schalter] {
+input[type=checkbox][class=schalter] {
     position: fixed; left: -100px;
-  }
-  input[type=checkbox][class=schalter] + label{
+}
+input[type=checkbox][class=schalter] + label{
     background: lightcoral;
-  }
-  input[type=checkbox][class=schalter]:checked + label {
+}
+input[type=checkbox][class=schalter]:checked + label {
     background: lightgreen;
-  }
-  input[type=text] {
+}
+input[type=text] {
     width: 100%;
     padding: 8px 20px;
     margin: 6px 0;
     box-sizing: border-box;
     font-size: 100%;
     text-align: center;
-  }
-  input[type=submit] {
+}
+input[type=submit] {
     width: 100%;
     font-size: 100%;
     padding: 6px;
     background: powderblue;
-  }
-
+}
 fieldset {
     margin-block: 20px;
     border:1px solid;
@@ -55,11 +54,10 @@ legend {
 button {
     font-size: 50%;
 }
-#platzhalter  {
+#platzhalter {
     visibility: hidden;
     margin: 100px 100px;
 }
-
 div.anwesenheit + input[type=checkbox]{
     position: static;
 }
