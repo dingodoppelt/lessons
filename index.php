@@ -21,7 +21,7 @@ if ($_POST['hausaufgaben'] != '') {
     }
 }
 if ($_POST['inhalte'] != '') {
-    $db->query("INSERT INTO unterricht (schuelerID, datum, inhalte) VALUES ('" . $_GET['schuelerWahl'] . "', NOW(), '" . $_POST['inhalte'] . "');") or die($db->error);
+    $db->query("INSERT INTO unterricht (schuelerID, datum, inhalte, online) VALUES ('" . $_GET['schuelerWahl'] . "', NOW(), '" . $_POST['inhalte'] . "', '" . intval(isset($_POST['online'])) . "');") or die($db->error);
     $untID = $db->insert_id;
     foreach ($_POST['abwesend'] as $abwesender) {
         $db->query("INSERT INTO abwesenheit (schuelerID, untID) VALUES (" . $abwesender . ", " . $untID . ");") or die($db->error);
@@ -64,6 +64,7 @@ if (isset($_GET['schuelerWahl'])) {
             <input type="submit" value="Stunde speichern..." onclick="return confirm('Themen und Hausaufgaben wirklich speichern?');">
         </fieldset>
         <?php
+            echo '<input type="checkbox" name="online">onlinestunde</input></br>';
             while ($teilnehmer = $teilnehmerX->fetch_object()) {
                 echo '<input type="checkbox" name="abwesend[]" value="' . $teilnehmer->ID . '" id="' . $teilnehmer->ID . '">' . $teilnehmer->vorname . '</input>';
             }
