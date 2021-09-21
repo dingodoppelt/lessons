@@ -81,35 +81,21 @@ $db->close();
             <script type="text/javascript">
                 var jArray = <?php echo json_encode($unterricht->fetch_all()); ?>;
                 var index = 0;
-                var datum = new Date(jArray[0][2]);
-                document.getElementById('vorigeStd').innerHTML = datum.toLocaleDateString('de-DE');
-                document.getElementById('historie').innerHTML = jArray[0][0];
+                setzeDatum();
+                function setzeDatum() {
+                    var _datum = new Date(jArray[index][2]);
+                    document.getElementById('historie').innerHTML = jArray[index][0];
+                    document.getElementById('vorigeStd').innerHTML = _datum.toLocaleDateString('de-DE');
+                }
                 function stundeZurueck() {
                     index++;
-                    if (index < jArray.length) {
-                        var _datum = new Date(jArray[index][2]);
-                        document.getElementById('historie').innerHTML = jArray[index][0];
-                        document.getElementById('vorigeStd').innerHTML = _datum.toLocaleDateString('de-DE');
-                        
-                    } else {
-                        index = 0;
-                        var _datum = new Date(jArray[index][2]);
-                        document.getElementById('historie').innerHTML = jArray[index][0];
-                        document.getElementById('vorigeStd').innerHTML = _datum.toLocaleDateString('de-DE');
-                    }
+                    if (index >= jArray.length) { index=0; }
+                    setzeDatum();
                 }
                 function stundeVor() {
                     index--;
-                    if (index < 0) {
-                        index = jArray.length-1;
-                        var _datum = new Date(jArray[index][2]);
-                        document.getElementById('historie').innerHTML = jArray[index][0];
-                        document.getElementById('vorigeStd').innerHTML = _datum.toLocaleDateString('de-DE');
-                    } else {
-                        var _datum = new Date(jArray[index][2]);
-                        document.getElementById('historie').innerHTML = jArray[index][0];
-                        document.getElementById('vorigeStd').innerHTML = _datum.toLocaleDateString('de-DE');
-                    }
+                    if (index < 0) { index = jArray.length-1; }
+                    setzeDatum();
                 }
             </script>
         
